@@ -1,47 +1,54 @@
 #include "TOF.h"
 
-TOF::TOF(TwoWire &wire, uint8_t i2cAddress)
-    : i2cWire(wire), i2cAddress(i2cAddress), timeout(500) {}
+TOF::TOF() {}
 
 bool TOF::begin() {
-    // Initialize I2C
-    i2cWire.begin(21, 22); // SDA = GPIO21, SCL = GPIO22 for DFR0478
-
-    // Initialize the sensor
-    if (!sensor.begin(i2cAddress, &i2cWire)) {
+    // Initialize the sensor with the default I2C address (0x29)
+    if (sensor.InitSensor(0x29) != VL53L4CX_ERROR_NONE) {
         Serial.println("Failed to initialize VL53L4CX sensor.");
         return false;
     }
+
+    // Configure the sensor
+    sensor.VL53L4CX_SetDistanceMode(VL53L4CX_DISTANCEMODE_LONG);
+    sensor.VL53L4CX_SetMeasurementTimingBudgetMicroSeconds(50000); // 50ms timing budget
+    sensor.VL53L4CX_StartMeasurement(); // Start continuous measurement
 
     Serial.println("VL53L4CX sensor initialized successfully.");
     return true;
 }
 
 uint16_t TOF::getDistance() {
-    if (!sensor.dataReady()) {
-        Serial.println("Sensor data not ready.");
-        return 0; // Return 0 if the sensor is not ready
-    }
+    uint8_t isDataReady = 0;
+    const TickType_t timeout = pdMS_TO_TICKS(100); // 100ms timeout
+    TickType_t startTime = xTaskGetTickCount();
 
-    VL53L4CX_MultiRangingData_t data;
-    if (sensor.rangingTest(&data)) {
-        if (data.RangeStatus == VL53L4CX_RANGE_STATUS_NONE) {
-            return data.RangeMilliMeter; // Valid range in mm
-        } else {
-            Serial.println("Error: Invalid range status.");
-            return 0; // Return 0 for invalid range
+    // Wait until data is ready or timeout occurs
+    while (!isDataReady) {
+        sensor.VL53L4CX_GetMeasurementDataReady(&isDataReady);
+
+        if (xTaskGetTickCount() - startTime > timeout) {
+            Serial.println("Timeout waiting for measurement data.");
+            return 0; // Timeout occurred
         }
-    } else {
-        Serial.println("Error: Failed to read ranging data.");
-        return 0; // Return 0 for read failure
+
+        vTaskDelay(pdMS_TO_TICKS(5)); // Yield to other tasks
     }
-}
 
-void TOF::setTimeout(uint16_t timeout) {
-    this->timeout = timeout;
-    sensor.setTimeout(timeout);
-}
+    // Fetch the multi-ranging data
+    if (sensor.VL53L4CX_GetMultiRangingData(&multiRangingData) != VL53L4CX_ERROR_NONE) {
+        Serial.println("Failed to fetch ranging data.");
+        return 0;
+    }
 
-bool TOF::isReady() {
-    return sensor.dataReady();
+    // Clear interrupt and prepare for the next measurement
+    sensor.VL53L4CX_ClearInterruptAndStartMeasurement();
+
+    // Return the distance to the first target
+    if (multiRangingData.NumberOfObjectsFound > 0) {
+        return multiRangingData.RangeData[0].RangeMilliMeter; // First target distance
+    } else {
+        Serial.println("No target detected.");
+        return 0;
+    }
 }
