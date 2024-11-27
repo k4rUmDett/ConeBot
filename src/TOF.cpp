@@ -2,7 +2,8 @@
 
 TOF::TOF() {}
 
-bool TOF::begin() {
+bool TOF::begin() 
+{
     // Initialize the sensor with the default I2C address (0x29)
     if (sensor.InitSensor(0x29) != VL53L4CX_ERROR_NONE) {
         Serial.println("Failed to initialize VL53L4CX sensor.");
@@ -18,7 +19,8 @@ bool TOF::begin() {
     return true;
 }
 
-uint16_t TOF::getDistance() {
+uint16_t TOF::getDistance()
+{
     uint8_t isDataReady = 0;
     const TickType_t timeout = pdMS_TO_TICKS(100); // 100ms timeout
     TickType_t startTime = xTaskGetTickCount();
