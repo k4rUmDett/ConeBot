@@ -10,7 +10,9 @@
  */
 Motor::Motor(uint8_t pwmPin, uint8_t dirPin, uint8_t encAPin, uint8_t encBPin, pcnt_unit_t pcntUnit)
     : pwmPin(pwmPin), dirPin(dirPin), encAPin(encAPin), encBPin(encBPin), pcntUnit(pcntUnit), encoderCount(0) {}
-
+/**
+ * @brief Initializes the motor control pins and sets up the Pulse Counter (PCNT) for the encoder.
+ */
 void Motor::begin()
 {
     // Motor control pin setup
@@ -22,6 +24,9 @@ void Motor::begin()
     setupPCNT();
 }
 
+/**
+ * @brief Configures the Pulse Counter (PCNT) unit for encoder feedback.
+ */
 void Motor::setupPCNT()
 {
     pcnt_config_t pcntConfig;
@@ -45,6 +50,12 @@ void Motor::setupPCNT()
     pcnt_counter_resume(pcntUnit);
 }
 
+/**
+ * @brief Sets the speed of the motor.
+ * 
+ * @param speed Speed value ranging from -255 to 255. Positive values indicate forward direction,
+ *              negative values indicate reverse direction, and zero stops the motor.
+ */
 void Motor::setSpeed(int speed)
 {
     speed = constrain(speed, -255, 255); // Ensure speed is within valid range
@@ -62,11 +73,19 @@ void Motor::setSpeed(int speed)
     analogWrite(pwmPin, speed); // Set PWM duty cycle
 }
 
+/**
+ * @brief Stops the motor by setting the PWM duty cycle to zero.
+ */
 void Motor::stop()
 {
     analogWrite(pwmPin, 0); // Set PWM duty cycle to 0
 }
 
+/**
+ * @brief Gets the current position of the motor based on encoder feedback.
+ * 
+ * @return The accumulated encoder count representing the motor position.
+ */
 int32_t Motor::getPosition()
 {
     int16_t count;
@@ -76,6 +95,9 @@ int32_t Motor::getPosition()
     return encoderCount;
 }
 
+/**
+ * @brief Resets the encoder position to zero.
+ */
 void Motor::resetPosition()
 {
     encoderCount = 0;            // Reset accumulated position
