@@ -1,5 +1,13 @@
 #include "Motor.h"
-
+/**
+ * @brief Constructs a Motor object.
+ * 
+ * @param pwmPin PWM pin used for motor speed control.
+ * @param dirPin Direction pin to control motor direction.
+ * @param encAPin Encoder A pin for position feedback.
+ * @param encBPin Encoder B pin for position feedback.
+ * @param pcntUnit PCNT unit used for encoder feedback.
+ */
 Motor::Motor(uint8_t pwmPin, uint8_t dirPin, uint8_t encAPin, uint8_t encBPin, pcnt_unit_t pcntUnit)
     : pwmPin(pwmPin), dirPin(dirPin), encAPin(encAPin), encBPin(encBPin), pcntUnit(pcntUnit), encoderCount(0) {}
 
