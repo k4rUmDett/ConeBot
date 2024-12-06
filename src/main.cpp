@@ -4,6 +4,11 @@
 #include "GPS.h"
 #include "TOF.h"
 
+void tofTask(void *parameter);
+void motorControlTask(void *parameter);
+void gpsTask(void *parameter);
+void imuTask(void *parameter);
+
 // Object instantiation based on the provided classes
 Motor motorLeft(25, 26, 34, 35, PCNT_UNIT_0);  // Example pins for left motor
 Motor motorRight(27, 14, 36, 39, PCNT_UNIT_1); // Example pins for right motor
@@ -19,6 +24,7 @@ int motorSpeed = 150;  // Example motor speed
 // FSM States
 enum ConeBotState {
     IDLE,
+    CORRECTING_TILT,
     MOVING_FORWARD,
     MOVING_BACKWARD,
     AVOIDING_OBSTACLE,
