@@ -50,6 +50,7 @@ void Motor::setupPCNT()
     pcnt_counter_resume(pcntUnit);
 }
 
+
 /**
  * @brief Sets the speed of the motor.
  * 
