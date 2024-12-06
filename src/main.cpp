@@ -16,6 +16,18 @@ bool obstacleDetected = false;
 float currentPitch = 0.0;
 int motorSpeed = 150;  // Example motor speed
 
+// FSM States
+enum ConeBotState {
+    IDLE,
+    MOVING_FORWARD,
+    MOVING_BACKWARD,
+    AVOIDING_OBSTACLE,
+    STOPPED
+};
+
+ConeBotState currentState = IDLE; // Initial state
+
+
 void setup() {
     Serial.begin(115200);
 
@@ -60,21 +72,46 @@ void motorControlTask(void *parameter) {
 }
 
 /**
- * @brief IMU task to monitor the orientation of the robot.
+ * @brief Motor control task to drive the robot forward or backward.
  */
-void imuTask(void *parameter) {
+void motorControlTask(void *parameter) {
     while (1) {
-        imuSensor.update();
-        currentPitch = imuSensor.getPitch();
+        switch (currentState) {
+            case IDLE:
+                // Stop the motors
+                motorLeft.stop();
+                motorRight.stop();
+                break;
 
-        // Check if the robot is tilted beyond a threshold
-        if (abs(currentPitch) > 15.0) {
-            // If tilt is too high, stop motors to prevent falling
-            motorLeft.stop();
-            motorRight.stop();
+            case MOVING_FORWARD:
+                if (obstacleDetected) {
+                    currentState = AVOIDING_OBSTACLE;
+                } else {
+                    motorLeft.setSpeed(motorSpeed);
+                    motorRight.setSpeed(motorSpeed);
+                }
+                break;
+
+            case MOVING_BACKWARD:
+                motorLeft.setSpeed(-motorSpeed);
+                motorRight.setSpeed(-motorSpeed);
+                break;
+
+            case AVOIDING_OBSTACLE:
+                // Simple example: Stop and go to STOPPED state
+                motorLeft.stop();
+                motorRight.stop();
+                currentState = STOPPED;
+                break;
+
+            case STOPPED:
+                // Motors are stopped
+                motorLeft.stop();
+                motorRight.stop();
+                // Could transition to IDLE after a condition is met, e.g., a restart command
+                break;
         }
-
-        vTaskDelay(200 / portTICK_PERIOD_MS);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
 
@@ -88,6 +125,9 @@ void tofTask(void *parameter) {
         // Update the obstacle detection state
         if (distance > 0 && distance < 300) { // Example threshold distance in mm
             obstacleDetected = true;
+            if (currentState == MOVING_FORWARD) {
+                currentState = AVOIDING_OBSTACLE;
+            }
         } else {
             obstacleDetected = false;
         }
