@@ -53,23 +53,6 @@ void loop() {
     // The main loop is intentionally left empty; FreeRTOS manages tasks
 }
 
-/**
- * @brief Motor control task to drive the robot forward or backward.
- */
-void motorControlTask(void *parameter) {
-    while (1) {
-        if (!obstacleDetected) {
-            // Move forward
-            motorLeft.setSpeed(motorSpeed);
-            motorRight.setSpeed(motorSpeed);
-        } else {
-            // Stop if obstacle is detected
-            motorLeft.stop();
-            motorRight.stop();
-        }
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-    }
-}
 
 /**
  * @brief Motor control task to drive the robot forward or backward.
@@ -112,6 +95,25 @@ void motorControlTask(void *parameter) {
                 break;
         }
         vTaskDelay(100 / portTICK_PERIOD_MS);
+    }
+}
+
+
+
+/**
+ * @brief IMU task to monitor the orientation of the robot.
+ */
+void imuTask(void *parameter) {
+    while (1) {
+        imuSensor.update();
+        currentPitch = imuSensor.getPitch();
+
+        // If the pitch exceeds a threshold, switch to CORRECTING_TILT state
+        if (abs(currentPitch) > 15.0 && currentState == MOVING_FORWARD) {
+            currentState = CORRECTING_TILT;
+        }
+
+        vTaskDelay(200 / portTICK_PERIOD_MS);
     }
 }
 
