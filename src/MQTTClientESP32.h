@@ -9,6 +9,7 @@
 #include "PrintStream.h"
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include "taskshare.h"
 
 /**
  *  @brief Structure representing the bot's position and tilt angle.
@@ -21,7 +22,8 @@ typedef struct {
 /**
  *  @brief Extern variable to store the bot's current state.
  */
-extern BotState botState;
+
+extern Share<BotState> botState;
 
 /**
  *  @class MQTTClientESP32

@@ -7,7 +7,7 @@
 /**
  *  @brief Extern variable definition for the bot's current state.
  */
-BotState botState = {0.0, 0.0};
+
 
 void MQTTClientESP32::setupWifi() {
     if (isHotspot) {
@@ -88,8 +88,10 @@ void MQTTClientESP32::mqttLoop() {
             reconnect();
         }
 
+        BotState local_state = botState.get();
+
         char msg_string[64];
-        sprintf(msg_string, "Position: %.2f, Tilt Angle: %.2f", botState.position, botState.tilt_angle);
+        sprintf(msg_string, "Position: %.2f, Tilt Angle: %.2f", local_state.position, local_state.tilt_angle);
         client.publish("bot/state", msg_string);
 
         vTaskDelay(1000);

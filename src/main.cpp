@@ -1,45 +1,142 @@
+/**
+ * @file main.cpp
+ * @brief A program to control a robotic system using MQTT, FreeRTOS, and sensor feedback.
+ *
+ * This program integrates motor control, IMU, TOF, GPS, and MQTT functionality into a single
+ * system managed by FreeRTOS tasks. The system reacts to real-time sensor data and uses MQTT
+ * for communication.
+ *
+ * @details The system's functionality includes:
+ * - Controlling motors based on FSM states.
+ * - Monitoring sensor data (IMU, TOF, GPS) for decision-making.
+ * - Publishing and subscribing to MQTT topics for remote control and telemetry.
+ *
+ * Acknowledgment: This program's design and implementation were assisted by OpenAI's ChatGPT.
+ */
+
 #include <Arduino.h>
 #include "Motor.h"
 #include "IMU.h"
 #include "GPS.h"
 #include "TOF.h"
+#include "MQTTClientESP32.h"
 
-void tofTask(void *parameter);
-void motorControlTask(void *parameter);
-void gpsTask(void *parameter);
-void imuTask(void *parameter);
-
-// Object instantiation based on the provided classes
-Motor motorLeft(25, 26, 34, 35, PCNT_UNIT_0);  // Example pins for left motor
-Motor motorRight(27, 14, 36, 39, PCNT_UNIT_1); // Example pins for right motor
+// Object instantiation
+Motor motorLeft(25, 26, 34, 35, PCNT_UNIT_0);
+Motor motorRight(27, 14, 36, 39, PCNT_UNIT_1);
 IMU imuSensor(0x28);
 TOF tofSensor;
 GPS gpsSensor(Serial2, 9600);
+MQTTClientESP32 mqttClient("SpectrumSetup-C8", "Pong_pang2499", "192.168.1.37", 1883);
+
+/**
+ * @brief Structure to store sensor measurements.
+ */
+typedef struct {
+    float position;      /**< Robot's position. */
+    float angle;         /**< Robot's tilt angle. */
+    int32_t latitude;    /**< Latitude from GPS. */
+    int32_t longtitude;  /**< Longitude from GPS. */
+    uint32_t attitude;   /**< Placeholder for additional attitude data. */
+    uint16_t distance;   /**< Distance from TOF sensor. */
+} Measurement;
 
 // Shared variables
-bool obstacleDetected = false;
-float currentPitch = 0.0;
-int motorSpeed = 150;  // Example motor speed
+Share<BotState> botState; /**< Shared variable for robot's state. */
+Share<Measurement> measurement; /**< Shared variable for sensor measurements. */
+Share<bool> obstacleDetected; /**< Shared variable for obstacle detection. */
 
 // FSM States
+/**
+ * @brief Finite State Machine (FSM) states for the robot.
+ */
 enum ConeBotState {
-    IDLE,
-    CORRECTING_TILT,
-    MOVING_FORWARD,
-    MOVING_BACKWARD,
-    AVOIDING_OBSTACLE,
-    STOPPED
+    IDLE,               /**< Robot is idle. */
+    CORRECTING_TILT,    /**< Robot is correcting tilt. */
+    MOVING_FORWARD,     /**< Robot is moving forward. */
+    MOVING_BACKWARD,    /**< Robot is moving backward. */
+    AVOIDING_OBSTACLE,  /**< Robot is avoiding an obstacle. */
+    STOPPED             /**< Robot is stopped. */
 };
 
 ConeBotState currentState = IDLE; // Initial state
 
+// Function prototypes
+void motorControlTask(void *parameter);
+void measurementTask(void *parameter);
+void mqttTask(void *parameter);
 
 void setup() {
     Serial.begin(115200);
 
-    // Initialize components
+    // Start FreeRTOS tasks
+    xTaskCreate(motorControlTask, "MotorControlTask", 2048, NULL, 1, NULL);
+    xTaskCreate(measurementTask, "MeasurementTask", 4096, NULL, 1, NULL);
+    xTaskCreate(mqttTask, "MQTTTask", 4096, NULL, 1, NULL);
+}
+
+void loop() {
+    // The main loop is intentionally left empty; FreeRTOS manages tasks
+}
+
+/**
+ * @brief Motor control task to drive the robot forward or backward based on the FSM state.
+ * 
+ * @param parameter FreeRTOS task parameter (unused).
+ */
+void motorControlTask(void *parameter) {
     motorLeft.begin();
     motorRight.begin();
+    while (1) {
+        switch (currentState) {
+            case IDLE:
+                motorLeft.stop();
+                motorRight.stop();
+                break;
+
+            case MOVING_FORWARD:
+                if (obstacleDetected.get()) {
+                    currentState = AVOIDING_OBSTACLE;
+                } else {
+                    motorLeft.setSpeed(255);
+                    motorRight.setSpeed(255);
+                }
+                break;
+
+            case MOVING_BACKWARD:
+                motorLeft.setSpeed(-256);
+                motorRight.setSpeed(-256);
+                break;
+
+            case AVOIDING_OBSTACLE:
+                motorLeft.stop();
+                motorRight.stop();
+                currentState = STOPPED;
+                break;
+
+            case STOPPED:
+                motorLeft.stop();
+                motorRight.stop();
+                break;
+
+            case CORRECTING_TILT:
+                if (abs(measurement.get().angle) < 5.0) {
+                    currentState = MOVING_FORWARD;
+                }
+                break;
+        }
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+    }
+}
+
+/**
+ * @brief Measurement task to handle IMU, TOF, and GPS sensor updates.
+ * 
+ * @param parameter FreeRTOS task parameter (unused).
+ */
+void measurementTask(void *parameter) {
+    Measurement local_measurement;
+    obstacleDetected.put(false);
     if (!imuSensor.begin()) {
         Serial.println("Failed to initialize IMU");
     }
@@ -47,121 +144,41 @@ void setup() {
         Serial.println("Failed to initialize TOF sensor");
     }
     gpsSensor.begin();
-
-    // Start FreeRTOS tasks
-    xTaskCreatePinnedToCore(motorControlTask, "MotorControlTask", 2048, NULL, 1, NULL, 0);
-    xTaskCreatePinnedToCore(imuTask, "IMUTask", 2048, NULL, 1, NULL, 0);
-    xTaskCreatePinnedToCore(tofTask, "TOFTask", 2048, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(gpsTask, "GPSTask", 2048, NULL, 1, NULL, 1);
-}
-
-void loop() {
-    // The main loop is intentionally left empty; FreeRTOS manages tasks
-}
-
-
-/**
- * @brief Motor control task to drive the robot forward or backward.
- */
-void motorControlTask(void *parameter) {
     while (1) {
-        switch (currentState) {
-            case IDLE:
-                // Stop the motors
-                motorLeft.stop();
-                motorRight.stop();
-                break;
-
-            case MOVING_FORWARD:
-                if (obstacleDetected) {
-                    currentState = AVOIDING_OBSTACLE;
-                } else {
-                    motorLeft.setSpeed(motorSpeed);
-                    motorRight.setSpeed(motorSpeed);
-                }
-                break;
-
-            case MOVING_BACKWARD:
-                motorLeft.setSpeed(-motorSpeed);
-                motorRight.setSpeed(-motorSpeed);
-                break;
-
-            case AVOIDING_OBSTACLE:
-                // Simple example: Stop and go to STOPPED state
-                motorLeft.stop();
-                motorRight.stop();
-                currentState = STOPPED;
-                break;
-
-            case STOPPED:
-                // Motors are stopped
-                motorLeft.stop();
-                motorRight.stop();
-                // Could transition to IDLE after a condition is met, e.g., a restart command
-                break;
-        }
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-    }
-}
-
-
-
-/**
- * @brief IMU task to monitor the orientation of the robot.
- */
-void imuTask(void *parameter) {
-    while (1) {
+        local_measurement = measurement.get();
+        // IMU Update
         imuSensor.update();
-        currentPitch = imuSensor.getPitch();
+        local_measurement.angle = imuSensor.getPitch();
 
-        //If the pitch exceeds a threshold, switch to CORRECTING_TILT state
-        if (abs(currentPitch) > 15.0 && currentState == MOVING_FORWARD) {
-            currentState = CORRECTING_TILT;
-        }
-
-        vTaskDelay(200 / portTICK_PERIOD_MS);
-    }
-}
-
-/**
- * @brief TOF sensor task to detect obstacles and update the state.
- */
-void tofTask(void *parameter) {
-    while (1) {
+        // TOF Update
         uint16_t distance = tofSensor.getDistance();
-
-        // Update the obstacle detection state
-        if (distance > 0 && distance < 300) { // Example threshold distance in mm
-            obstacleDetected = true;
-            if (currentState == MOVING_FORWARD) {
-                currentState = AVOIDING_OBSTACLE;
-            }
-        } else {
-            obstacleDetected = false;
+        obstacleDetected.put(distance > 0 && distance < 300);
+        if (obstacleDetected.get() && currentState == MOVING_FORWARD) {
+            currentState = AVOIDING_OBSTACLE;
         }
+
+        // Update the shared state
+        BotState local_state = botState.get();
+        local_state.position = gpsSensor.getLatitude().toFloat();
+        local_state.tilt_angle = local_measurement.angle;
+        botState.put(local_state);
+
+        // GPS Update
+        gpsSensor.update();
 
         vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
 
 /**
- * @brief GPS task to track the current location of the robot.
+ * @brief MQTT task to handle publishing and subscribing to topics.
+ * 
+ * @param parameter FreeRTOS task parameter (unused).
  */
-void gpsTask(void *parameter) {
+void mqttTask(void *parameter) {
+    mqttClient.begin();
     while (1) {
-        if (gpsSensor.update()) {
-            String latitude = gpsSensor.getLatitude();
-            String longitude = gpsSensor.getLongitude();
-            String utcTime = gpsSensor.getUTC();
-
-            // For debugging, print GPS info to Serial Monitor
-            Serial.print("Latitude: ");
-            Serial.println(latitude);
-            Serial.print("Longitude: ");
-            Serial.println(longitude);
-            Serial.print("UTC Time: ");
-            Serial.println(utcTime);
-        }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        mqttClient.mqttLoop();
+        vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
