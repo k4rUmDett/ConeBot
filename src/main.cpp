@@ -24,6 +24,7 @@ int motorSpeed = 150;  // Example motor speed
 // FSM States
 enum ConeBotState {
     IDLE,
+    CORRECTING_TILT,
     MOVING_FORWARD,
     MOVING_BACKWARD,
     AVOIDING_OBSTACLE,
@@ -113,10 +114,10 @@ void imuTask(void *parameter) {
         imuSensor.update();
         currentPitch = imuSensor.getPitch();
 
-        // If the pitch exceeds a threshold, switch to CORRECTING_TILT state
-        // if (abs(currentPitch) > 15.0 && currentState == MOVING_FORWARD) {
-        //     currentState = CORRECTING_TILT;
-        // }
+        //If the pitch exceeds a threshold, switch to CORRECTING_TILT state
+        if (abs(currentPitch) > 15.0 && currentState == MOVING_FORWARD) {
+            currentState = CORRECTING_TILT;
+        }
 
         vTaskDelay(200 / portTICK_PERIOD_MS);
     }
