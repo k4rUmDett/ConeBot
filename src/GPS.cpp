@@ -1,14 +1,26 @@
 #include "GPS.h"
 
+/**
+ * @brief Constructor for the GPS class.
+ * @param serial Reference to the hardware serial interface for GPS communication.
+ * @param baud The baud rate for GPS communication (default: 9600).
+ */
 GPS::GPS(HardwareSerial &serial, uint32_t baud)
     : gpsSerial(serial), gpsBaud(baud), latitude(""), longitude(""),
       altitude(""), utcTime(""), fixStatus("") {}
 
+/**
+ * @brief Initialize the GPS module by starting the serial communication.
+ */
 void GPS::begin()
 {
     gpsSerial.begin(gpsBaud);
 }
 
+/**
+ * @brief Update the GPS data by reading and parsing an NMEA sentence.
+ * @return True if a valid NMEA sentence was parsed; otherwise, false.
+ */
 bool GPS::update()
 {
     while (gpsSerial.available()) {
@@ -24,6 +36,10 @@ bool GPS::update()
     return false; // No complete sentence received
 }
 
+/**
+ * @brief Parse an NMEA sentence to extract GPS data fields.
+ * @param nmea The NMEA sentence to parse.
+ */
 void GPS::parseNMEA(const String &nmea)
 {
     if (nmea.startsWith("$GPGGA")) { // Parse $GPGGA sentence
@@ -46,26 +62,46 @@ void GPS::parseNMEA(const String &nmea)
     }
 }
 
+/**
+ * @brief Get the latitude as a string.
+ * @return The latitude in NMEA format.
+ */
 String GPS::getLatitude()
 {
     return latitude;
 }
 
+/**
+ * @brief Get the longitude as a string.
+ * @return The longitude in NMEA format.
+ */
 String GPS::getLongitude()
 {
     return longitude;
 }
 
+/**
+ * @brief Get the UTC time as a string.
+ * @return The UTC time in NMEA format.
+ */
 String GPS::getUTC()
 {
     return utcTime;
 }
 
+/**
+ * @brief Get the GPS fix status as a string.
+ * @return The fix status from the GPS module.
+ */
 String GPS::getFixStatus()
 {
     return fixStatus;
 }
 
+/**
+ * @brief Get the altitude as a string.
+ * @return The altitude in meters as reported by the GPS module.
+ */
 String GPS::getAltitude()
 {
     return altitude;

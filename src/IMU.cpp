@@ -1,21 +1,31 @@
 #include "IMU.h"
 #include <Arduino.h>
 
+/**
+ * @brief Constructor for the IMU class.
+ * @param address The I2C address of the BNO055 sensor.
+ */
 IMU::IMU(uint8_t address)
     : bno(55, address), address(address), calibrated(false), pitch(0), angularVelocity(0) {}
 
+/**
+ * @brief Initializes the BNO055 sensor.
+ * @return True if initialization is successful, false otherwise.
+ */
 bool IMU::begin()
 {
-    // Initialize the BNO055 with the correct operation mode
-    if (!bno.begin((adafruit_bno055_opmode_t)0x0C)) {  // Use the enum or its equivalent directly
+    if (!bno.begin((adafruit_bno055_opmode_t)0x0C)) {
         Serial.println("Error initializing BNO055!");
         return false;
     }
-    delay(1000); // Allow sensor to stabilize
+    delay(1000);
     bno.setExtCrystalUse(true);
     return true;
 }
 
+/**
+ * @brief Calibrates the IMU sensor by ensuring all systems are fully calibrated.
+ */
 void IMU::calibrate()
 {
     Serial.println("Calibrating IMU...");
@@ -36,6 +46,9 @@ void IMU::calibrate()
     Serial.println("IMU Calibrated!");
 }
 
+/**
+ * @brief Updates the sensor's state, including pitch and angular velocity.
+ */
 void IMU::update()
 {
     if (!calibrated) {
@@ -45,21 +58,36 @@ void IMU::update()
     computeState();
 }
 
+/**
+ * @brief Gets the current pitch (tilt angle) of the sensor.
+ * @return The pitch in degrees.
+ */
 float IMU::getPitch()
 {
     return pitch;
 }
 
+/**
+ * @brief Gets the angular velocity of the sensor (pitch rate).
+ * @return The angular velocity in radians per second.
+ */
 float IMU::getAngularVelocity()
 {
     return angularVelocity;
 }
 
+/**
+ * @brief Checks if the sensor is fully calibrated.
+ * @return True if calibrated, false otherwise.
+ */
 bool IMU::isCalibrated() const
 {
     return calibrated;
 }
 
+/**
+ * @brief Prints the current calibration status to the serial monitor.
+ */
 void IMU::printCalibrationStatus()
 {
     uint8_t sys, gyro, accel, mag;
@@ -74,13 +102,14 @@ void IMU::printCalibrationStatus()
     Serial.println(mag, DEC);
 }
 
+/**
+ * @brief Computes the current state of the sensor, including pitch and angular velocity.
+ */
 void IMU::computeState()
 {
-    // Get Euler angles (yaw, pitch, roll)
     imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-    pitch = euler.z(); // Forward/backward tilt angle
+    pitch = euler.z();
 
-    // Get angular velocity from gyroscope
     imu::Vector<3> gyro = bno.getVector(Adafruit_BNO055::VECTOR_GYROSCOPE);
-    angularVelocity = gyro.y(); // Pitch rate of change
+    angularVelocity = gyro.y();
 }
