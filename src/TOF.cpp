@@ -1,7 +1,20 @@
 #include "TOF.h"
 
+/**
+ * @brief Constructor for the TOF class.
+ * 
+ * Initializes the TOF instance but does not perform sensor initialization.
+ */
 TOF::TOF() {}
 
+/**
+ * @brief Initializes the VL53L4CX sensor with default settings.
+ * 
+ * The sensor is configured to operate in long-distance mode with a measurement
+ * timing budget of 50ms. Continuous measurements are started after initialization.
+ * 
+ * @return True if initialization is successful, false otherwise.
+ */
 bool TOF::begin() 
 {
     // Initialize the sensor with the default I2C address (0x29)
@@ -19,6 +32,14 @@ bool TOF::begin()
     return true;
 }
 
+/**
+ * @brief Retrieves the measured distance from the TOF sensor.
+ * 
+ * This method waits for measurement data to be ready, fetches the multi-ranging data,
+ * and clears the interrupt to prepare for the next measurement.
+ * 
+ * @return The distance to the first detected target in millimeters, or 0 if an error occurs.
+ */
 uint16_t TOF::getDistance()
 {
     uint8_t isDataReady = 0;
