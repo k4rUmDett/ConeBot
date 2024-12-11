@@ -55,11 +55,7 @@ enum ConeBotState {
     CORRECTING_TILT,    /**< Robot is correcting tilt. */
     MOVING_FORWARD,     /**< Robot is moving forward. */
     MOVING_BACKWARD,    /**< Robot is moving backward. */
-    AVOIDING_OBSTACLE,  /**< Robot is avoiding an obstacle. */
-    STOPPED             /**< Robot is stopped. */
 };
-
-ConeBotState currentState = IDLE; // Initial state
 
 // Function prototypes
 void motorControlTask(void *parameter);
@@ -87,6 +83,7 @@ void loop() {
 void motorControlTask(void *parameter) {
     motorLeft.begin();
     motorRight.begin();
+    ConeBotState currentState = IDLE;
     while (1) {
         switch (currentState) {
             case IDLE:
@@ -96,7 +93,7 @@ void motorControlTask(void *parameter) {
 
             case MOVING_FORWARD:
                 if (obstacleDetected.get()) {
-                    currentState = AVOIDING_OBSTACLE;
+                    currentState = IDLE;
                 } else {
                     motorLeft.setSpeed(255);
                     motorRight.setSpeed(255);
@@ -104,24 +101,19 @@ void motorControlTask(void *parameter) {
                 break;
 
             case MOVING_BACKWARD:
-                motorLeft.setSpeed(-256);
-                motorRight.setSpeed(-256);
-                break;
-
-            case AVOIDING_OBSTACLE:
-                motorLeft.stop();
-                motorRight.stop();
-                currentState = STOPPED;
-                break;
-
-            case STOPPED:
-                motorLeft.stop();
-                motorRight.stop();
+                if (obstacleDetected.get()) {
+                    currentState = IDLE;
+                }
+                else {
+                    motorLeft.setSpeed(-256);
+                    motorRight.setSpeed(-256);
+                }
                 break;
 
             case CORRECTING_TILT:
                 if (abs(measurement.get().angle) < 5.0) {
-                    currentState = MOVING_FORWARD;
+                    motorLeft.setSpeed(50);
+                    motorRight.setSpeed(50);
                 }
                 break;
         }
@@ -152,10 +144,7 @@ void measurementTask(void *parameter) {
 
         // TOF Update
         uint16_t distance = tofSensor.getDistance();
-        obstacleDetected.put(distance > 0 && distance < 300);
-        if (obstacleDetected.get() && currentState == MOVING_FORWARD) {
-            currentState = AVOIDING_OBSTACLE;
-        }
+        obstacleDetected.put(distance > 0 && distance < 10);
 
         // Update the shared state
         BotState local_state = botState.get();
