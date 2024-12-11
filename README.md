@@ -84,3 +84,6 @@ This repository contains the software implementation for ConeBot, including feat
 - Arduino IDE or PlatformIO.
 - Mosquitto MQTT broker or any compatible MQTT server.
 - Wi-Fi access point for ESP32 connection.
+
+## Acknowledgement
+- This program's design and implementation were assisted by OpenAI's ChatGPT.
