@@ -1,4 +1,4 @@
-# ConeBot Software
+# ConeBot
 
 ## Overview
 
