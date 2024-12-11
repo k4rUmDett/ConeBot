@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -97,16 +98,31 @@ $(function(){initNavTree('functions_func.html',''); initResizable(true); });
 
 <div class="contents">
 <div class="textblock">Here is a list of all documented functions with links to the class documentation for each member:</div><ul>
-<li>begin()&#160;:&#160;<a class="el" href="class_motor.html#a8949ad244c546ecde601ec3d03403ed9">Motor</a>, <a class="el" href="class_m_q_t_t_client_e_s_p32.html#a6cadda461236838e7b10ccace9441a43">MQTTClientESP32</a></li>
+<li>begin()&#160;:&#160;<a class="el" href="class_g_p_s.html#a1a06504c62498b8e5924e73bcabbf098">GPS</a>, <a class="el" href="class_i_m_u.html#a5c5a5f2b7afd415bd918faf28ea33792">IMU</a>, <a class="el" href="class_motor.html#a8949ad244c546ecde601ec3d03403ed9">Motor</a>, <a class="el" href="class_m_q_t_t_client_e_s_p32.html#a6cadda461236838e7b10ccace9441a43">MQTTClientESP32</a>, <a class="el" href="class_t_o_f.html#a953ca15080404b311796aba6f29e2f94">TOF</a></li>
+<li>calibrate()&#160;:&#160;<a class="el" href="class_i_m_u.html#a2be1f7017e9a8747790ffd4a0d116f4c">IMU</a></li>
+<li>getAltitude()&#160;:&#160;<a class="el" href="class_g_p_s.html#aa4a7dbc8376b9c1278b775debbb5153e">GPS</a></li>
+<li>getAngularVelocity()&#160;:&#160;<a class="el" href="class_i_m_u.html#aa99d2d2f38364f7693125bb67adfee40">IMU</a></li>
+<li>getDistance()&#160;:&#160;<a class="el" href="class_t_o_f.html#ab1705bc769de1834f27025669d12be06">TOF</a></li>
+<li>getFixStatus()&#160;:&#160;<a class="el" href="class_g_p_s.html#aae3abc5bbd91136eb452cb5b2622fc82">GPS</a></li>
 <li>getLastReceivedMessage()&#160;:&#160;<a class="el" href="class_m_q_t_t_client_e_s_p32.html#a6a35d45ff23502195864e37ad9648c68">MQTTClientESP32</a></li>
 <li>getLastReceivedTopic()&#160;:&#160;<a class="el" href="class_m_q_t_t_client_e_s_p32.html#aa08320d0143cd6f3b74781dc09f44fc7">MQTTClientESP32</a></li>
+<li>getLatitude()&#160;:&#160;<a class="el" href="class_g_p_s.html#acf46b73cb6733c12eea2f7d9b8e2ce57">GPS</a></li>
+<li>getLongitude()&#160;:&#160;<a class="el" href="class_g_p_s.html#a1279963b756ca864a280f2831161e687">GPS</a></li>
+<li>getPitch()&#160;:&#160;<a class="el" href="class_i_m_u.html#a62628ef9d9418c9342fc474d575c2aaa">IMU</a></li>
 <li>getPosition()&#160;:&#160;<a class="el" href="class_motor.html#a19e2db65cf89c20cbf15015780916e47">Motor</a></li>
+<li>getUTC()&#160;:&#160;<a class="el" href="class_g_p_s.html#a5dae1dda5e0b8058d7781c15cada0afa">GPS</a></li>
+<li>GPS()&#160;:&#160;<a class="el" href="class_g_p_s.html#a97d7e3a4e6b6ee5c440af4f279534a1f">GPS</a></li>
+<li>IMU()&#160;:&#160;<a class="el" href="class_i_m_u.html#a9ed5e5b9e9674d0554cfc8534c50d258">IMU</a></li>
+<li>isCalibrated()&#160;:&#160;<a class="el" href="class_i_m_u.html#a6548d62f5bf3d60e980906264d53e472">IMU</a></li>
 <li>Motor()&#160;:&#160;<a class="el" href="class_motor.html#a613a34a6398d0161b2df127f8cfa7a8d">Motor</a></li>
 <li>MQTTClientESP32()&#160;:&#160;<a class="el" href="class_m_q_t_t_client_e_s_p32.html#a0e14ce17a6f99b1078096823105d7fea">MQTTClientESP32</a></li>
 <li>mqttLoop()&#160;:&#160;<a class="el" href="class_m_q_t_t_client_e_s_p32.html#a946631405385582414ff9dcef6a9b40e">MQTTClientESP32</a></li>
+<li>printCalibrationStatus()&#160;:&#160;<a class="el" href="class_i_m_u.html#a2ade655c51b9935e6a0d7126e553ade8">IMU</a></li>
 <li>resetPosition()&#160;:&#160;<a class="el" href="class_motor.html#acaaea4b9438f7db25f6f1b98654e449a">Motor</a></li>
 <li>setSpeed()&#160;:&#160;<a class="el" href="class_motor.html#aa58cbc26a0da87389dd208367d0fa407">Motor</a></li>
 <li>stop()&#160;:&#160;<a class="el" href="class_motor.html#a015fd5308d4d27e5dcf7f9ea3d5c03f6">Motor</a></li>
+<li>TOF()&#160;:&#160;<a class="el" href="class_t_o_f.html#a966ac4483f5d437afd09c95c147cc15e">TOF</a></li>
+<li>update()&#160;:&#160;<a class="el" href="class_g_p_s.html#a43dd76504671531f8ae742f4780480fc">GPS</a>, <a class="el" href="class_i_m_u.html#a40bdeb6e5e40420be3a7a4eeb12c5f43">IMU</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

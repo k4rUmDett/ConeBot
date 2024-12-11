@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ConeBot: D:/ME507/ConeBot/src/main.cpp File Reference</title>
+<title>ConeBot: src/main.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -141,7 +142,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa15d098d04da105e75e1d5b50e0db540"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_motor.html" title="Motor class to control motor speed, direction, and read encoder feedback.">Motor</a> control task to drive the robot forward or backward based on the FSM state.  <br /></td></tr>
 <tr class="separator:aa15d098d04da105e75e1d5b50e0db540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae776724918256d691089ea530654b212" id="r_ae776724918256d691089ea530654b212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae776724918256d691089ea530654b212">measurementTask</a> (void *parameter)</td></tr>
-<tr class="memdesc:ae776724918256d691089ea530654b212"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_measurement.html" title="Structure to store sensor measurements.">Measurement</a> task to handle <a class="el" href="class_i_m_u.html">IMU</a>, <a class="el" href="class_t_o_f.html">TOF</a>, and <a class="el" href="class_g_p_s.html">GPS</a> sensor updates.  <br /></td></tr>
+<tr class="memdesc:ae776724918256d691089ea530654b212"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_measurement.html" title="Structure to store sensor measurements.">Measurement</a> task to handle <a class="el" href="class_i_m_u.html" title="A class to interface with the Adafruit BNO055 IMU sensor.">IMU</a>, <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a>, and <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> sensor updates.  <br /></td></tr>
 <tr class="separator:ae776724918256d691089ea530654b212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a646d14888b9c6ba390299b391ea32911" id="r_a646d14888b9c6ba390299b391ea32911"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a646d14888b9c6ba390299b391ea32911">mqttTask</a> (void *parameter)</td></tr>
 <tr class="memdesc:a646d14888b9c6ba390299b391ea32911"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT task to handle publishing and subscribing to topics.  <br /></td></tr>
@@ -186,10 +187,10 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A program to control a robotic system using MQTT, FreeRTOS, and sensor feedback. </p>
-<p>This program integrates motor control, <a class="el" href="class_i_m_u.html">IMU</a>, <a class="el" href="class_t_o_f.html">TOF</a>, <a class="el" href="class_g_p_s.html">GPS</a>, and MQTT functionality into a single system managed by FreeRTOS tasks. The system reacts to real-time sensor data and uses MQTT for communication.</p>
+<p>This program integrates motor control, <a class="el" href="class_i_m_u.html" title="A class to interface with the Adafruit BNO055 IMU sensor.">IMU</a>, <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a>, <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a>, and MQTT functionality into a single system managed by FreeRTOS tasks. The system reacts to real-time sensor data and uses MQTT for communication.</p>
 <p>The system's functionality includes:</p><ul>
 <li>Controlling motors based on FSM states.</li>
-<li>Monitoring sensor data (<a class="el" href="class_i_m_u.html">IMU</a>, <a class="el" href="class_t_o_f.html">TOF</a>, <a class="el" href="class_g_p_s.html">GPS</a>) for decision-making.</li>
+<li>Monitoring sensor data (<a class="el" href="class_i_m_u.html" title="A class to interface with the Adafruit BNO055 IMU sensor.">IMU</a>, <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a>, <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a>) for decision-making.</li>
 <li>Publishing and subscribing to MQTT topics for remote control and telemetry.</li>
 </ul>
 <p>Acknowledgment: This program's design and implementation were assisted by OpenAI's ChatGPT. </p>
@@ -240,7 +241,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="struct_measurement.html" title="Structure to store sensor measurements.">Measurement</a> task to handle <a class="el" href="class_i_m_u.html">IMU</a>, <a class="el" href="class_t_o_f.html">TOF</a>, and <a class="el" href="class_g_p_s.html">GPS</a> sensor updates. </p>
+<p><a class="el" href="struct_measurement.html" title="Structure to store sensor measurements.">Measurement</a> task to handle <a class="el" href="class_i_m_u.html" title="A class to interface with the Adafruit BNO055 IMU sensor.">IMU</a>, <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a>, and <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> sensor updates. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameter</td><td>FreeRTOS task parameter (unused). </td></tr>
@@ -353,7 +354,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_33b05a046ef9c5df310b975529546a7f.html">ME507</a></li><li class="navelem"><a class="el" href="dir_52ad6fa6cbe495d0f3389edb332f732a.html">ConeBot</a></li><li class="navelem"><a class="el" href="dir_5785384424751492d2d97d53696ed674.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

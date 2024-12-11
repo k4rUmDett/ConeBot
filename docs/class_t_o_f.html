@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -102,19 +103,99 @@ $(function(){initNavTree('class_t_o_f.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">TOF Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class for interfacing with the VL53L4CX Time-of-Flight (<a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a>) sensor.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_t_o_f_8h_source.html">TOF.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a953ca15080404b311796aba6f29e2f94" id="r_a953ca15080404b311796aba6f29e2f94"><td class="memItemLeft" align="right" valign="top"><a id="a953ca15080404b311796aba6f29e2f94" name="a953ca15080404b311796aba6f29e2f94"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
+<tr class="memitem:a966ac4483f5d437afd09c95c147cc15e" id="r_a966ac4483f5d437afd09c95c147cc15e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966ac4483f5d437afd09c95c147cc15e">TOF</a> ()</td></tr>
+<tr class="memdesc:a966ac4483f5d437afd09c95c147cc15e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a> class.  <br /></td></tr>
+<tr class="separator:a966ac4483f5d437afd09c95c147cc15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a953ca15080404b311796aba6f29e2f94" id="r_a953ca15080404b311796aba6f29e2f94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a953ca15080404b311796aba6f29e2f94">begin</a> ()</td></tr>
+<tr class="memdesc:a953ca15080404b311796aba6f29e2f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the VL53L4CX sensor with default settings.  <br /></td></tr>
 <tr class="separator:a953ca15080404b311796aba6f29e2f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1705bc769de1834f27025669d12be06" id="r_ab1705bc769de1834f27025669d12be06"><td class="memItemLeft" align="right" valign="top"><a id="ab1705bc769de1834f27025669d12be06" name="ab1705bc769de1834f27025669d12be06"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>getDistance</b> ()</td></tr>
+<tr class="memitem:ab1705bc769de1834f27025669d12be06" id="r_ab1705bc769de1834f27025669d12be06"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1705bc769de1834f27025669d12be06">getDistance</a> ()</td></tr>
+<tr class="memdesc:ab1705bc769de1834f27025669d12be06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the measured distance from the <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a> sensor.  <br /></td></tr>
 <tr class="separator:ab1705bc769de1834f27025669d12be06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class for interfacing with the VL53L4CX Time-of-Flight (<a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a>) sensor. </p>
+<p>The <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a> class provides methods to initialize the sensor and measure distances. It uses the STM32Duino VL53L4CX library for communication and configuration. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a966ac4483f5d437afd09c95c147cc15e" name="a966ac4483f5d437afd09c95c147cc15e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966ac4483f5d437afd09c95c147cc15e">&#9670;&#160;</a></span>TOF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TOF::TOF </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a> class. </p>
+<p>Initializes the class instance but does not start the sensor.</p>
+<p>Initializes the <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a> instance but does not perform sensor initialization. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a953ca15080404b311796aba6f29e2f94" name="a953ca15080404b311796aba6f29e2f94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a953ca15080404b311796aba6f29e2f94">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TOF::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the VL53L4CX sensor with default settings. </p>
+<p>Configures the sensor to use long-distance mode and sets the measurement timing budget.</p>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization is successful, false otherwise.</dd></dl>
+<p>The sensor is configured to operate in long-distance mode with a measurement timing budget of 50ms. Continuous measurements are started after initialization.</p>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization is successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab1705bc769de1834f27025669d12be06" name="ab1705bc769de1834f27025669d12be06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1705bc769de1834f27025669d12be06">&#9670;&#160;</a></span>getDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t TOF::getDistance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the measured distance from the <a class="el" href="class_t_o_f.html" title="A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.">TOF</a> sensor. </p>
+<p>This method waits for measurement data to be ready and fetches the distance to the closest detected target in millimeters.</p>
+<dl class="section return"><dt>Returns</dt><dd>The distance to the first detected target in millimeters, or 0 if an error occurs.</dd></dl>
+<p>This method waits for measurement data to be ready, fetches the multi-ranging data, and clears the interrupt to prepare for the next measurement.</p>
+<dl class="section return"><dt>Returns</dt><dd>The distance to the first detected target in millimeters, or 0 if an error occurs. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ME507/ConeBot/src/<a class="el" href="_t_o_f_8h_source.html">TOF.h</a></li>
-<li>D:/ME507/ConeBot/src/<b>TOF.cpp</b></li>
+<li>src/<a class="el" href="_t_o_f_8h_source.html">TOF.h</a></li>
+<li>src/<b>TOF.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

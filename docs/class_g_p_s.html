@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -102,37 +103,218 @@ $(function(){initNavTree('class_g_p_s.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">GPS Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class for interfacing with a <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module using NMEA sentences.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_g_p_s_8h_source.html">GPS.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a97d7e3a4e6b6ee5c440af4f279534a1f" id="r_a97d7e3a4e6b6ee5c440af4f279534a1f"><td class="memItemLeft" align="right" valign="top"><a id="a97d7e3a4e6b6ee5c440af4f279534a1f" name="a97d7e3a4e6b6ee5c440af4f279534a1f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GPS</b> (HardwareSerial &amp;serial, uint32_t baud=9600)</td></tr>
+<tr class="memitem:a97d7e3a4e6b6ee5c440af4f279534a1f" id="r_a97d7e3a4e6b6ee5c440af4f279534a1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97d7e3a4e6b6ee5c440af4f279534a1f">GPS</a> (HardwareSerial &amp;serial, uint32_t baud=9600)</td></tr>
+<tr class="memdesc:a97d7e3a4e6b6ee5c440af4f279534a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> class.  <br /></td></tr>
 <tr class="separator:a97d7e3a4e6b6ee5c440af4f279534a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a06504c62498b8e5924e73bcabbf098" id="r_a1a06504c62498b8e5924e73bcabbf098"><td class="memItemLeft" align="right" valign="top"><a id="a1a06504c62498b8e5924e73bcabbf098" name="a1a06504c62498b8e5924e73bcabbf098"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
+<tr class="memitem:a1a06504c62498b8e5924e73bcabbf098" id="r_a1a06504c62498b8e5924e73bcabbf098"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a06504c62498b8e5924e73bcabbf098">begin</a> ()</td></tr>
+<tr class="memdesc:a1a06504c62498b8e5924e73bcabbf098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module by setting up the serial communication.  <br /></td></tr>
 <tr class="separator:a1a06504c62498b8e5924e73bcabbf098"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43dd76504671531f8ae742f4780480fc" id="r_a43dd76504671531f8ae742f4780480fc"><td class="memItemLeft" align="right" valign="top"><a id="a43dd76504671531f8ae742f4780480fc" name="a43dd76504671531f8ae742f4780480fc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="memitem:a43dd76504671531f8ae742f4780480fc" id="r_a43dd76504671531f8ae742f4780480fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43dd76504671531f8ae742f4780480fc">update</a> ()</td></tr>
+<tr class="memdesc:a43dd76504671531f8ae742f4780480fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> data by reading and parsing NMEA sentences.  <br /></td></tr>
 <tr class="separator:a43dd76504671531f8ae742f4780480fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf46b73cb6733c12eea2f7d9b8e2ce57" id="r_acf46b73cb6733c12eea2f7d9b8e2ce57"><td class="memItemLeft" align="right" valign="top"><a id="acf46b73cb6733c12eea2f7d9b8e2ce57" name="acf46b73cb6733c12eea2f7d9b8e2ce57"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>getLatitude</b> ()</td></tr>
+<tr class="memitem:acf46b73cb6733c12eea2f7d9b8e2ce57" id="r_acf46b73cb6733c12eea2f7d9b8e2ce57"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf46b73cb6733c12eea2f7d9b8e2ce57">getLatitude</a> ()</td></tr>
+<tr class="memdesc:acf46b73cb6733c12eea2f7d9b8e2ce57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the latitude as a string.  <br /></td></tr>
 <tr class="separator:acf46b73cb6733c12eea2f7d9b8e2ce57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1279963b756ca864a280f2831161e687" id="r_a1279963b756ca864a280f2831161e687"><td class="memItemLeft" align="right" valign="top"><a id="a1279963b756ca864a280f2831161e687" name="a1279963b756ca864a280f2831161e687"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>getLongitude</b> ()</td></tr>
+<tr class="memitem:a1279963b756ca864a280f2831161e687" id="r_a1279963b756ca864a280f2831161e687"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1279963b756ca864a280f2831161e687">getLongitude</a> ()</td></tr>
+<tr class="memdesc:a1279963b756ca864a280f2831161e687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the longitude as a string.  <br /></td></tr>
 <tr class="separator:a1279963b756ca864a280f2831161e687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dae1dda5e0b8058d7781c15cada0afa" id="r_a5dae1dda5e0b8058d7781c15cada0afa"><td class="memItemLeft" align="right" valign="top"><a id="a5dae1dda5e0b8058d7781c15cada0afa" name="a5dae1dda5e0b8058d7781c15cada0afa"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>getUTC</b> ()</td></tr>
+<tr class="memitem:a5dae1dda5e0b8058d7781c15cada0afa" id="r_a5dae1dda5e0b8058d7781c15cada0afa"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dae1dda5e0b8058d7781c15cada0afa">getUTC</a> ()</td></tr>
+<tr class="memdesc:a5dae1dda5e0b8058d7781c15cada0afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the UTC time as a string.  <br /></td></tr>
 <tr class="separator:a5dae1dda5e0b8058d7781c15cada0afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae3abc5bbd91136eb452cb5b2622fc82" id="r_aae3abc5bbd91136eb452cb5b2622fc82"><td class="memItemLeft" align="right" valign="top"><a id="aae3abc5bbd91136eb452cb5b2622fc82" name="aae3abc5bbd91136eb452cb5b2622fc82"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>getFixStatus</b> ()</td></tr>
+<tr class="memitem:aae3abc5bbd91136eb452cb5b2622fc82" id="r_aae3abc5bbd91136eb452cb5b2622fc82"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae3abc5bbd91136eb452cb5b2622fc82">getFixStatus</a> ()</td></tr>
+<tr class="memdesc:aae3abc5bbd91136eb452cb5b2622fc82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> fix status as a string.  <br /></td></tr>
 <tr class="separator:aae3abc5bbd91136eb452cb5b2622fc82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4a7dbc8376b9c1278b775debbb5153e" id="r_aa4a7dbc8376b9c1278b775debbb5153e"><td class="memItemLeft" align="right" valign="top"><a id="aa4a7dbc8376b9c1278b775debbb5153e" name="aa4a7dbc8376b9c1278b775debbb5153e"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>getAltitude</b> ()</td></tr>
+<tr class="memitem:aa4a7dbc8376b9c1278b775debbb5153e" id="r_aa4a7dbc8376b9c1278b775debbb5153e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4a7dbc8376b9c1278b775debbb5153e">getAltitude</a> ()</td></tr>
+<tr class="memdesc:aa4a7dbc8376b9c1278b775debbb5153e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the altitude as a string.  <br /></td></tr>
 <tr class="separator:aa4a7dbc8376b9c1278b775debbb5153e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class for interfacing with a <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module using NMEA sentences. </p>
+<p>The <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> class provides methods to read and parse <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> data, including latitude, longitude, altitude, UTC time, and fix status. It communicates with the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module via a hardware serial interface. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a97d7e3a4e6b6ee5c440af4f279534a1f" name="a97d7e3a4e6b6ee5c440af4f279534a1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97d7e3a4e6b6ee5c440af4f279534a1f">&#9670;&#160;</a></span>GPS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPS::GPS </td>
+          <td>(</td>
+          <td class="paramtype">HardwareSerial &amp;</td>          <td class="paramname"><span class="paramname"><em>serial</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>baud</em></span><span class="paramdefsep"> = </span><span class="paramdefval">9600</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serial</td><td>Reference to the hardware serial interface for <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> communication. </td></tr>
+    <tr><td class="paramname">baud</td><td>The baud rate for <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> communication (default: 9600). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1a06504c62498b8e5924e73bcabbf098" name="a1a06504c62498b8e5924e73bcabbf098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a06504c62498b8e5924e73bcabbf098">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GPS::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module by setting up the serial communication. </p>
+<p>Initialize the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module by starting the serial communication. </p>
+
+</div>
+</div>
+<a id="aa4a7dbc8376b9c1278b775debbb5153e" name="aa4a7dbc8376b9c1278b775debbb5153e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a7dbc8376b9c1278b775debbb5153e">&#9670;&#160;</a></span>getAltitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String GPS::getAltitude </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the altitude as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The altitude in meters as reported by the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module. </dd></dl>
+
+</div>
+</div>
+<a id="aae3abc5bbd91136eb452cb5b2622fc82" name="aae3abc5bbd91136eb452cb5b2622fc82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3abc5bbd91136eb452cb5b2622fc82">&#9670;&#160;</a></span>getFixStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String GPS::getFixStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> fix status as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The fix status from the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> module. </dd></dl>
+
+</div>
+</div>
+<a id="acf46b73cb6733c12eea2f7d9b8e2ce57" name="acf46b73cb6733c12eea2f7d9b8e2ce57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf46b73cb6733c12eea2f7d9b8e2ce57">&#9670;&#160;</a></span>getLatitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String GPS::getLatitude </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the latitude as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The latitude in NMEA format. </dd></dl>
+
+</div>
+</div>
+<a id="a1279963b756ca864a280f2831161e687" name="a1279963b756ca864a280f2831161e687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1279963b756ca864a280f2831161e687">&#9670;&#160;</a></span>getLongitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String GPS::getLongitude </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the longitude as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The longitude in NMEA format. </dd></dl>
+
+</div>
+</div>
+<a id="a5dae1dda5e0b8058d7781c15cada0afa" name="a5dae1dda5e0b8058d7781c15cada0afa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dae1dda5e0b8058d7781c15cada0afa">&#9670;&#160;</a></span>getUTC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String GPS::getUTC </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the UTC time as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>The UTC time in NMEA format. </dd></dl>
+
+</div>
+</div>
+<a id="a43dd76504671531f8ae742f4780480fc" name="a43dd76504671531f8ae742f4780480fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43dd76504671531f8ae742f4780480fc">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GPS::update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> data by reading and parsing NMEA sentences. </p>
+<p>Update the <a class="el" href="class_g_p_s.html" title="A class for interfacing with a GPS module using NMEA sentences.">GPS</a> data by reading and parsing an NMEA sentence.</p>
+<dl class="section return"><dt>Returns</dt><dd>True if a valid NMEA sentence was parsed; otherwise, false. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ME507/ConeBot/src/<a class="el" href="_g_p_s_8h_source.html">GPS.h</a></li>
-<li>D:/ME507/ConeBot/src/<b>GPS.cpp</b></li>
+<li>src/<a class="el" href="_g_p_s_8h_source.html">GPS.h</a></li>
+<li>src/<b>GPS.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

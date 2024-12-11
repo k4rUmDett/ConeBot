@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ConeBot: D:/ME507/ConeBot/src/GPS.h Source File</title>
+<title>ConeBot: src/GPS.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -104,37 +105,51 @@ $(function(){initNavTree('_g_p_s_8h_source.html',''); initResizable(true); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_g_p_s.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="class_g_p_s.html">GPS</a></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_class" href="class_g_p_s.html">GPS</a>(HardwareSerial &amp;serial, uint32_t baud = 9600);</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">void</span> begin();                   <span class="comment">// Initialize the GPS</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">bool</span> update();                  <span class="comment">// Read and parse NMEA sentence</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    String getLatitude();           <span class="comment">// Get latitude as a string</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    String getLongitude();          <span class="comment">// Get longitude as a string</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    String getUTC();                <span class="comment">// Get UTC time</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    String getFixStatus();          <span class="comment">// Get fix status</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    String getAltitude();           <span class="comment">// Get altitude</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    HardwareSerial &amp;gpsSerial;      <span class="comment">// Reference to the serial port used for GPS</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    uint32_t gpsBaud;               <span class="comment">// Baud rate for GPS communication</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    String nmeaBuffer;              <span class="comment">// Buffer to hold NMEA sentence</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    String latitude, longitude, altitude, utcTime, fixStatus;</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_g_p_s.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_g_p_s.html">GPS</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="class_g_p_s.html#a97d7e3a4e6b6ee5c440af4f279534a1f">GPS</a>(HardwareSerial &amp;serial, uint32_t baud = 9600);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> parseNMEA(<span class="keyword">const</span> String &amp;nmea); <span class="comment">// Parse the NMEA sentence</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_g_p_s.html#a1a06504c62498b8e5924e73bcabbf098">begin</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_g_p_s.html#a43dd76504671531f8ae742f4780480fc">update</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    String <a class="code hl_function" href="class_g_p_s.html#acf46b73cb6733c12eea2f7d9b8e2ce57">getLatitude</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    String <a class="code hl_function" href="class_g_p_s.html#a1279963b756ca864a280f2831161e687">getLongitude</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    String <a class="code hl_function" href="class_g_p_s.html#a5dae1dda5e0b8058d7781c15cada0afa">getUTC</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    String <a class="code hl_function" href="class_g_p_s.html#aae3abc5bbd91136eb452cb5b2622fc82">getFixStatus</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    String <a class="code hl_function" href="class_g_p_s.html#aa4a7dbc8376b9c1278b775debbb5153e">getAltitude</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    HardwareSerial &amp;gpsSerial; </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    uint32_t gpsBaud;          </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    String nmeaBuffer;         </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    String latitude, longitude, altitude, utcTime, fixStatus; </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> parseNMEA(<span class="keyword">const</span> String &amp;nmea);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclass_g_p_s_html"><div class="ttname"><a href="class_g_p_s.html">GPS</a></div><div class="ttdef"><b>Definition</b> GPS.h:7</div></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_g_p_s_html"><div class="ttname"><a href="class_g_p_s.html">GPS</a></div><div class="ttdoc">A class for interfacing with a GPS module using NMEA sentences.</div><div class="ttdef"><b>Definition</b> GPS.h:15</div></div>
+<div class="ttc" id="aclass_g_p_s_html_a1279963b756ca864a280f2831161e687"><div class="ttname"><a href="class_g_p_s.html#a1279963b756ca864a280f2831161e687">GPS::getLongitude</a></div><div class="ttdeci">String getLongitude()</div><div class="ttdoc">Get the longitude as a string.</div><div class="ttdef"><b>Definition</b> GPS.cpp:78</div></div>
+<div class="ttc" id="aclass_g_p_s_html_a1a06504c62498b8e5924e73bcabbf098"><div class="ttname"><a href="class_g_p_s.html#a1a06504c62498b8e5924e73bcabbf098">GPS::begin</a></div><div class="ttdeci">void begin()</div><div class="ttdoc">Initialize the GPS module by setting up the serial communication.</div><div class="ttdef"><b>Definition</b> GPS.cpp:15</div></div>
+<div class="ttc" id="aclass_g_p_s_html_a43dd76504671531f8ae742f4780480fc"><div class="ttname"><a href="class_g_p_s.html#a43dd76504671531f8ae742f4780480fc">GPS::update</a></div><div class="ttdeci">bool update()</div><div class="ttdoc">Update the GPS data by reading and parsing NMEA sentences.</div><div class="ttdef"><b>Definition</b> GPS.cpp:24</div></div>
+<div class="ttc" id="aclass_g_p_s_html_a5dae1dda5e0b8058d7781c15cada0afa"><div class="ttname"><a href="class_g_p_s.html#a5dae1dda5e0b8058d7781c15cada0afa">GPS::getUTC</a></div><div class="ttdeci">String getUTC()</div><div class="ttdoc">Get the UTC time as a string.</div><div class="ttdef"><b>Definition</b> GPS.cpp:87</div></div>
+<div class="ttc" id="aclass_g_p_s_html_a97d7e3a4e6b6ee5c440af4f279534a1f"><div class="ttname"><a href="class_g_p_s.html#a97d7e3a4e6b6ee5c440af4f279534a1f">GPS::GPS</a></div><div class="ttdeci">GPS(HardwareSerial &amp;serial, uint32_t baud=9600)</div><div class="ttdoc">Constructor for the GPS class.</div><div class="ttdef"><b>Definition</b> GPS.cpp:8</div></div>
+<div class="ttc" id="aclass_g_p_s_html_aa4a7dbc8376b9c1278b775debbb5153e"><div class="ttname"><a href="class_g_p_s.html#aa4a7dbc8376b9c1278b775debbb5153e">GPS::getAltitude</a></div><div class="ttdeci">String getAltitude()</div><div class="ttdoc">Get the altitude as a string.</div><div class="ttdef"><b>Definition</b> GPS.cpp:105</div></div>
+<div class="ttc" id="aclass_g_p_s_html_aae3abc5bbd91136eb452cb5b2622fc82"><div class="ttname"><a href="class_g_p_s.html#aae3abc5bbd91136eb452cb5b2622fc82">GPS::getFixStatus</a></div><div class="ttdeci">String getFixStatus()</div><div class="ttdoc">Get the GPS fix status as a string.</div><div class="ttdef"><b>Definition</b> GPS.cpp:96</div></div>
+<div class="ttc" id="aclass_g_p_s_html_acf46b73cb6733c12eea2f7d9b8e2ce57"><div class="ttname"><a href="class_g_p_s.html#acf46b73cb6733c12eea2f7d9b8e2ce57">GPS::getLatitude</a></div><div class="ttdeci">String getLatitude()</div><div class="ttdoc">Get the latitude as a string.</div><div class="ttdef"><b>Definition</b> GPS.cpp:69</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_33b05a046ef9c5df310b975529546a7f.html">ME507</a></li><li class="navelem"><a class="el" href="dir_52ad6fa6cbe495d0f3389edb332f732a.html">ConeBot</a></li><li class="navelem"><a class="el" href="dir_5785384424751492d2d97d53696ed674.html">src</a></li><li class="navelem"><b>GPS.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>GPS.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

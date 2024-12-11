@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ConeBot: D:/ME507/ConeBot/src/IMU.h Source File</title>
+<title>ConeBot: src/IMU.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -106,43 +107,52 @@ $(function(){initNavTree('_i_m_u_8h_source.html',''); initResizable(true); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;SPI.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;Adafruit_BNO055.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_i_m_u.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="class_i_m_u.html">IMU</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_i_m_u.html">IMU</a>(uint8_t address = BNO055_ADDRESS_A);</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">bool</span> begin();</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">void</span> calibrate();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">void</span> update();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">float</span> getPitch(); <span class="comment">// Forward/backward tilt angle</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">float</span> getAngularVelocity(); <span class="comment">// Angular velocity (pitch rate)</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">bool</span> isCalibrated() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> printCalibrationStatus();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    Adafruit_BNO055 bno;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    uint8_t address;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">bool</span> calibrated;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">float</span> pitch;              <span class="comment">// Forward/backward tilt</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">float</span> angularVelocity;    <span class="comment">// Angular velocity (pitch rate)</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> computeState();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_i_m_u.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="class_i_m_u.html">IMU</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="class_i_m_u.html#a9ed5e5b9e9674d0554cfc8534c50d258">IMU</a>(uint8_t address = BNO055_ADDRESS_A);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_i_m_u.html#a5c5a5f2b7afd415bd918faf28ea33792">begin</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_m_u.html#a2be1f7017e9a8747790ffd4a0d116f4c">calibrate</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_m_u.html#a40bdeb6e5e40420be3a7a4eeb12c5f43">update</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_i_m_u.html#a62628ef9d9418c9342fc474d575c2aaa">getPitch</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_i_m_u.html#aa99d2d2f38364f7693125bb67adfee40">getAngularVelocity</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_i_m_u.html#a6548d62f5bf3d60e980906264d53e472">isCalibrated</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_m_u.html#a2ade655c51b9935e6a0d7126e553ade8">printCalibrationStatus</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    Adafruit_BNO055 bno;      </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    uint8_t address;          </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">bool</span> calibrated;          </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">float</span> pitch;              </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">float</span> angularVelocity;    </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> computeState();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclass_i_m_u_html"><div class="ttname"><a href="class_i_m_u.html">IMU</a></div><div class="ttdef"><b>Definition</b> IMU.h:10</div></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_i_m_u_html"><div class="ttname"><a href="class_i_m_u.html">IMU</a></div><div class="ttdoc">A class to interface with the Adafruit BNO055 IMU sensor.</div><div class="ttdef"><b>Definition</b> IMU.h:17</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a2ade655c51b9935e6a0d7126e553ade8"><div class="ttname"><a href="class_i_m_u.html#a2ade655c51b9935e6a0d7126e553ade8">IMU::printCalibrationStatus</a></div><div class="ttdeci">void printCalibrationStatus()</div><div class="ttdoc">Prints the current calibration status to the serial monitor.</div><div class="ttdef"><b>Definition</b> IMU.cpp:91</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a2be1f7017e9a8747790ffd4a0d116f4c"><div class="ttname"><a href="class_i_m_u.html#a2be1f7017e9a8747790ffd4a0d116f4c">IMU::calibrate</a></div><div class="ttdeci">void calibrate()</div><div class="ttdoc">Calibrates the IMU sensor by ensuring all systems are fully calibrated.</div><div class="ttdef"><b>Definition</b> IMU.cpp:29</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a40bdeb6e5e40420be3a7a4eeb12c5f43"><div class="ttname"><a href="class_i_m_u.html#a40bdeb6e5e40420be3a7a4eeb12c5f43">IMU::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Updates the sensor's state, including pitch and angular velocity.</div><div class="ttdef"><b>Definition</b> IMU.cpp:52</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a5c5a5f2b7afd415bd918faf28ea33792"><div class="ttname"><a href="class_i_m_u.html#a5c5a5f2b7afd415bd918faf28ea33792">IMU::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdoc">Initializes the BNO055 sensor.</div><div class="ttdef"><b>Definition</b> IMU.cpp:15</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a62628ef9d9418c9342fc474d575c2aaa"><div class="ttname"><a href="class_i_m_u.html#a62628ef9d9418c9342fc474d575c2aaa">IMU::getPitch</a></div><div class="ttdeci">float getPitch()</div><div class="ttdoc">Gets the current pitch (tilt angle) of the sensor.</div><div class="ttdef"><b>Definition</b> IMU.cpp:65</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a6548d62f5bf3d60e980906264d53e472"><div class="ttname"><a href="class_i_m_u.html#a6548d62f5bf3d60e980906264d53e472">IMU::isCalibrated</a></div><div class="ttdeci">bool isCalibrated() const</div><div class="ttdoc">Checks if the sensor is fully calibrated.</div><div class="ttdef"><b>Definition</b> IMU.cpp:83</div></div>
+<div class="ttc" id="aclass_i_m_u_html_a9ed5e5b9e9674d0554cfc8534c50d258"><div class="ttname"><a href="class_i_m_u.html#a9ed5e5b9e9674d0554cfc8534c50d258">IMU::IMU</a></div><div class="ttdeci">IMU(uint8_t address=BNO055_ADDRESS_A)</div><div class="ttdoc">Constructor for the IMU class.</div><div class="ttdef"><b>Definition</b> IMU.cpp:8</div></div>
+<div class="ttc" id="aclass_i_m_u_html_aa99d2d2f38364f7693125bb67adfee40"><div class="ttname"><a href="class_i_m_u.html#aa99d2d2f38364f7693125bb67adfee40">IMU::getAngularVelocity</a></div><div class="ttdeci">float getAngularVelocity()</div><div class="ttdoc">Gets the angular velocity of the sensor (pitch rate).</div><div class="ttdef"><b>Definition</b> IMU.cpp:74</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_33b05a046ef9c5df310b975529546a7f.html">ME507</a></li><li class="navelem"><a class="el" href="dir_52ad6fa6cbe495d0f3389edb332f732a.html">ConeBot</a></li><li class="navelem"><a class="el" href="dir_5785384424751492d2d97d53696ed674.html">src</a></li><li class="navelem"><b>IMU.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>IMU.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

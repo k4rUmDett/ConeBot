@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ConeBot: D:/ME507/ConeBot/src/TOF.h Source File</title>
+<title>ConeBot: src/TOF.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">ConeBot<span id="projectnumber">&#160;1.0</span>
    </div>
+   <div id="projectbrief">ConeBot is based on a balancing robot that integrates real-time sensor feedback, motor control, and MQTT communication for aautonomous navigation and remote monitoring.</div>
   </td>
  </tr>
  </tbody>
@@ -105,28 +106,33 @@ $(function(){initNavTree('_t_o_f_8h_source.html',''); initResizable(true); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vl53l4cx_class.h&gt;</span> <span class="comment">// Include STM32Duino VL53L4CX library</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_t_o_f.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="class_t_o_f.html">TOF</a></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_class" href="class_t_o_f.html">TOF</a>();                          <span class="comment">// Constructor</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">bool</span> begin();                   <span class="comment">// Initialize the sensor</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    uint16_t getDistance();         <span class="comment">// Get the measured distance in mm</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    VL53L4CX sensor;                <span class="comment">// VL53L4CX sensor instance</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    VL53L4CX_MultiRangingData_t multiRangingData; <span class="comment">// Structure to store ranging results</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>};</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_t_o_f.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_t_o_f.html">TOF</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="class_t_o_f.html#a966ac4483f5d437afd09c95c147cc15e">TOF</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_t_o_f.html#a953ca15080404b311796aba6f29e2f94">begin</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    uint16_t <a class="code hl_function" href="class_t_o_f.html#ab1705bc769de1834f27025669d12be06">getDistance</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    VL53L4CX sensor; </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    VL53L4CX_MultiRangingData_t multiRangingData; </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
 </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclass_t_o_f_html"><div class="ttname"><a href="class_t_o_f.html">TOF</a></div><div class="ttdef"><b>Definition</b> TOF.h:8</div></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_t_o_f_html"><div class="ttname"><a href="class_t_o_f.html">TOF</a></div><div class="ttdoc">A class for interfacing with the VL53L4CX Time-of-Flight (TOF) sensor.</div><div class="ttdef"><b>Definition</b> TOF.h:15</div></div>
+<div class="ttc" id="aclass_t_o_f_html_a953ca15080404b311796aba6f29e2f94"><div class="ttname"><a href="class_t_o_f.html#a953ca15080404b311796aba6f29e2f94">TOF::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdoc">Initializes the VL53L4CX sensor with default settings.</div><div class="ttdef"><b>Definition</b> TOF.cpp:18</div></div>
+<div class="ttc" id="aclass_t_o_f_html_a966ac4483f5d437afd09c95c147cc15e"><div class="ttname"><a href="class_t_o_f.html#a966ac4483f5d437afd09c95c147cc15e">TOF::TOF</a></div><div class="ttdeci">TOF()</div><div class="ttdoc">Constructor for the TOF class.</div><div class="ttdef"><b>Definition</b> TOF.cpp:8</div></div>
+<div class="ttc" id="aclass_t_o_f_html_ab1705bc769de1834f27025669d12be06"><div class="ttname"><a href="class_t_o_f.html#ab1705bc769de1834f27025669d12be06">TOF::getDistance</a></div><div class="ttdeci">uint16_t getDistance()</div><div class="ttdoc">Retrieves the measured distance from the TOF sensor.</div><div class="ttdef"><b>Definition</b> TOF.cpp:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_33b05a046ef9c5df310b975529546a7f.html">ME507</a></li><li class="navelem"><a class="el" href="dir_52ad6fa6cbe495d0f3389edb332f732a.html">ConeBot</a></li><li class="navelem"><a class="el" href="dir_5785384424751492d2d97d53696ed674.html">src</a></li><li class="navelem"><b>TOF.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>TOF.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
